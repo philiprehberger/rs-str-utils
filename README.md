@@ -1,6 +1,10 @@
 # rs-str-utils
 
-String manipulation utilities — truncation, case conversion, padding, and whitespace operations.
+[![CI](https://github.com/philiprehberger/rs-str-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/rs-str-utils/actions/workflows/ci.yml)
+[![Crates.io](https://img.shields.io/crates/v/philiprehberger-str-utils.svg)](https://crates.io/crates/philiprehberger-str-utils)
+[![License](https://img.shields.io/github/license/philiprehberger/rs-str-utils)](LICENSE)
+
+String manipulation utilities — truncation, case conversion, padding, and whitespace operations
 
 ## Installation
 
@@ -51,6 +55,13 @@ assert_eq!("  hello   world  ".squish(), "hello world");
 | `squish()` | Collapse whitespace |
 | `dedent()` | Remove common indentation |
 | `indent(prefix)` | Add prefix to each line |
+
+## Development
+
+```bash
+cargo test
+cargo clippy -- -D warnings
+```
 
 ## License
 
