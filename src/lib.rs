@@ -360,6 +360,38 @@ pub trait StrExt {
             .collect::<Vec<_>>()
             .join("\n")
     }
+
+    /// Extract initials from each word (e.g., "Hello World" -> "HW").
+    ///
+    /// Words are split on whitespace. The first character of each word is collected
+    /// and returned as-is (preserving original case).
+    ///
+    /// ```
+    /// use philiprehberger_str_utils::StrExt;
+    /// assert_eq!("Hello World".initials(), "HW");
+    /// assert_eq!("foo bar baz".initials(), "fbb");
+    /// ```
+    fn initials(&self) -> String {
+        let s = self.as_str_ext();
+        s.split_whitespace()
+            .filter_map(|word| word.chars().next())
+            .collect()
+    }
+
+    /// Count the number of words in the string.
+    ///
+    /// Words are split on whitespace. Leading, trailing, and consecutive whitespace
+    /// are handled gracefully.
+    ///
+    /// ```
+    /// use philiprehberger_str_utils::StrExt;
+    /// assert_eq!("Hello World".word_count(), 2);
+    /// assert_eq!("  spaced  out  ".word_count(), 2);
+    /// ```
+    fn word_count(&self) -> usize {
+        let s = self.as_str_ext();
+        s.split_whitespace().count()
+    }
 }
 
 impl StrExt for str {
@@ -634,6 +666,70 @@ mod tests {
         assert_eq!("".indent("  "), "");
     }
 
+    // --- Initials ---
+
+    #[test]
+    fn initials_basic() {
+        assert_eq!("Hello World".initials(), "HW");
+    }
+
+    #[test]
+    fn initials_lowercase() {
+        assert_eq!("foo bar baz".initials(), "fbb");
+    }
+
+    #[test]
+    fn initials_single_word() {
+        assert_eq!("Hello".initials(), "H");
+    }
+
+    #[test]
+    fn initials_empty() {
+        assert_eq!("".initials(), "");
+    }
+
+    #[test]
+    fn initials_extra_whitespace() {
+        assert_eq!("  Hello   World  ".initials(), "HW");
+    }
+
+    #[test]
+    fn initials_unicode() {
+        assert_eq!("\u{00DC}ber \u{00D6}sterreich".initials(), "\u{00DC}\u{00D6}");
+    }
+
+    // --- Word count ---
+
+    #[test]
+    fn word_count_basic() {
+        assert_eq!("Hello World".word_count(), 2);
+    }
+
+    #[test]
+    fn word_count_single_word() {
+        assert_eq!("Hello".word_count(), 1);
+    }
+
+    #[test]
+    fn word_count_empty() {
+        assert_eq!("".word_count(), 0);
+    }
+
+    #[test]
+    fn word_count_only_whitespace() {
+        assert_eq!("   \t\n  ".word_count(), 0);
+    }
+
+    #[test]
+    fn word_count_extra_whitespace() {
+        assert_eq!("  spaced  out  ".word_count(), 2);
+    }
+
+    #[test]
+    fn word_count_many_words() {
+        assert_eq!("one two three four five".word_count(), 5);
+    }
+
     // --- String type support ---
 
     #[test]
@@ -642,5 +738,7 @@ mod tests {
         assert_eq!(s.to_camel_case(), "helloWorld");
         assert_eq!(s.squish(), "hello world");
         assert_eq!(s.pad_left(15, '.'), "....hello world");
+        assert_eq!(s.initials(), "hw");
+        assert_eq!(s.word_count(), 2);
     }
 }
