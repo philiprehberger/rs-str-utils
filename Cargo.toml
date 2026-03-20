@@ -2,12 +2,15 @@
 name = "philiprehberger-str-utils"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.70"
 authors = ["Philip Rehberger"]
 description = "String manipulation utilities — truncation, case conversion, padding, and whitespace operations"
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/philiprehberger/rs-str-utils"
+documentation = "https://docs.rs/philiprehberger-str-utils"
 keywords = ["string", "text", "case", "truncate", "utility"]
-categories = ["text-processing", "no-std::no-alloc"]
+categories = ["text-processing"]
 
 [dependencies]
 unicode-width = "0.2"
