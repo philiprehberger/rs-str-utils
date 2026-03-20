@@ -10,7 +10,7 @@ String manipulation utilities — truncation, case conversion, padding, and whit
 
 ```toml
 [dependencies]
-philiprehberger-str-utils = "0.1"
+philiprehberger-str-utils = "0.1.0"
 ```
 
 ## Usage
