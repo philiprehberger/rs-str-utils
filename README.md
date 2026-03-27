@@ -3,6 +3,7 @@
 [![CI](https://github.com/philiprehberger/rs-str-utils/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/rs-str-utils/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/philiprehberger-str-utils.svg)](https://crates.io/crates/philiprehberger-str-utils)
 [![License](https://img.shields.io/github/license/philiprehberger/rs-str-utils)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 String manipulation utilities — truncation, case conversion, padding, and whitespace operations
 
