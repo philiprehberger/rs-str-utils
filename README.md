@@ -10,7 +10,7 @@ String manipulation utilities — truncation, case conversion, padding, and whit
 
 ```toml
 [dependencies]
-philiprehberger-str-utils = "0.1.1"
+philiprehberger-str-utils = "0.2.0"
 ```
 
 ## Usage
@@ -35,6 +35,10 @@ assert_eq!("hi".pad_center(6, '-'), "--hi--");
 
 // Whitespace
 assert_eq!("  hello   world  ".squish(), "hello world");
+
+// Word utilities
+assert_eq!("Hello World".initials(), "HW");
+assert_eq!("Hello World".word_count(), 2);
 ```
 
 ## API
@@ -55,6 +59,8 @@ assert_eq!("  hello   world  ".squish(), "hello world");
 | `squish()` | Collapse whitespace |
 | `dedent()` | Remove common indentation |
 | `indent(prefix)` | Add prefix to each line |
+| `initials()` | Extract first letter of each word |
+| `word_count()` | Count words in the string |
 
 ## Development
 
